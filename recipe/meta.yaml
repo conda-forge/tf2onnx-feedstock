@@ -1,8 +1,7 @@
-{% set name = "tf2onnx" %}
 {% set version = "1.5.3" %}
 
 package:
-  name: {{ name|lower }}
+  name: tf2onnx
   version: {{ version }}
 
 source:
@@ -11,8 +10,8 @@ source:
 
 build:
   number: 1
+  skip: true  # [win or py2k]
   script: "{{ PYTHON }} -m pip install . --no-deps -vv"
-  skip: true    # [win or py2k]
 
 requirements:
   build:
@@ -22,11 +21,8 @@ requirements:
     - python
     - pip
     - pytest-runner
-    - numpy >=1.14.1
-    - onnx >=1.4.1
-    - requests
-    - six
-    - setuptools
+    - numpy
+    - libprotobuf
   run:
     - python
     - tensorflow >=1.5.0
@@ -48,7 +44,7 @@ about:
   license_family: MIT
   license_file: LICENSE
   summary: 'Tensorflow to ONNX converter'
-  description: 'tf2onnx - convert TensorFlow models to ONNX models.'
+  description: 'tf2onnx - convert TensorFlow models to ONNX models'
   doc_url: http://simplejson.readthedocs.io/
   dev_url: https://github.com/onnx/tensorflow-onnx
 
