@@ -9,7 +9,7 @@ Feedstock license: BSD 3-Clause
 
 Summary: Tensorflow to ONNX converter
 
-tf2onnx - convert TensorFlow models to ONNX models.
+tf2onnx - convert TensorFlow models to ONNX models
 
 Current build status
 ====================
