@@ -1,2 +1,3 @@
 libprotobuf:
-  - 3.9
+  - 3.9  # [linux]
+  - 3.10  # [osx]
