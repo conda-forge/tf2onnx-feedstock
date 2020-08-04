@@ -1,5 +1,5 @@
 {% set name = "tf2onnx" %}
-{% set version = "1.5.3" %}
+{% set version = "1.6.3" %}
 
 package:
   name: {{ name|lower }}
@@ -7,12 +7,12 @@ package:
 
 source:
   url: https://github.com/onnx/tensorflow-onnx/archive/v{{ version }}.tar.gz
-  sha256: 567f11c963c91d6f719c9ff2ac23a430d65fe037b4c3aacc30eaf12b7d60861c
+  sha256: 82ab1ed80b26e66b5b25dbee713be6ae3a916092db1fe088bc94634158d90cfa
 
 build:
   number: 0
-  script: "{{ PYTHON }} -m pip install . --no-deps -vv"
-  skip: true    # [win or py>=37 or py2k]
+  script: {{ PYTHON }} -m pip install . --no-deps -vv
+  skip: true  # [win or py>=37 or py2k]
 
 requirements:
   build:
@@ -46,8 +46,8 @@ about:
   license: MIT
   license_family: MIT
   license_file: LICENSE
-  summary: 'Tensorflow to ONNX converter'
-  description: 'tf2onnx - convert TensorFlow models to ONNX models.'
+  summary: Tensorflow to ONNX converter
+  description: tf2onnx - convert TensorFlow models to ONNX models.
   doc_url: http://simplejson.readthedocs.io/
   dev_url: https://github.com/onnx/tensorflow-onnx
 
