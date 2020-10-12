@@ -5,9 +5,13 @@ Home: https://github.com/onnx/tensorflow-onnx
 
 Package license: MIT
 
-Feedstock license: BSD-3-Clause
+Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/tf2onnx-feedstock/blob/master/LICENSE.txt)
 
 Summary: Tensorflow to ONNX converter
+
+Development: https://github.com/onnx/tensorflow-onnx
+
+Documentation: http://simplejson.readthedocs.io/
 
 tf2onnx - convert TensorFlow models to ONNX models.
 
