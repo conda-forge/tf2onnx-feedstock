@@ -1,5 +1,5 @@
 {% set name = "tf2onnx" %}
-{% set version = "1.7.1" %}
+{% set version = "1.7.2" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://github.com/onnx/tensorflow-onnx/archive/v{{ version }}.tar.gz
-  sha256: 40ce968c0f5c80581f1f920426ad42a3e912154563da81e5c4a45e71aa159667
+  sha256: 133c3c28a761bc3b2307081920268f4c246d89cce35f50ba8018e105995f8d28
 
 build:
   number: 0
