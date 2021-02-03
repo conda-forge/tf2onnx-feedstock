@@ -36,6 +36,7 @@ requirements:
     - protobuf
     - requests
     - attrs
+    - flatbuffers
 
 test:
   commands:
