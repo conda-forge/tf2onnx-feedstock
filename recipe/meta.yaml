@@ -12,7 +12,7 @@ source:
 build:
   number: 0
   script: {{ PYTHON }} -m pip install . --no-deps -vv
-  skip: true  # [win or py>=37 or py2k]
+  skip: true  # [win]
 
 requirements:
   build:
@@ -22,24 +22,24 @@ requirements:
     - python
     - pip
     - pytest-runner
-    - numpy >=1.14.1
+    - numpy
     - onnx >=1.4.1
     - requests
     - six
-    - setuptools
   run:
     - python
-    - tensorflow >=1.5.0
     - onnx >=1.4.1
     - {{ pin_compatible('numpy') }}
     - six
-    - protobuf
     - requests
-    - attrs
-    - flatbuffers
+    - python-flatbuffers
+    - tensorflow >=1.5
 
 test:
+  requires:
+    - pip
   commands:
+    - pip check
     - python -m tf2onnx.convert --help
 
 about:
