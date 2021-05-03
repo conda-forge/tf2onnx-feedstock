@@ -1,5 +1,5 @@
 {% set name = "tf2onnx" %}
-{% set version = "1.8.1" %}
+{% set version = "1.8.2" %}
 
 package:
   name: {{ name|lower }}
@@ -7,38 +7,42 @@ package:
 
 source:
   url: https://github.com/onnx/tensorflow-onnx/archive/v{{ version }}.tar.gz
-  sha256: fc612a2fca6426c29aeb536e1aa514941a7a4fa8a32b49cab0601e9be0090f7c
+  sha256: cfea74d85bcf5e5e925548901c948df3abaae9484e2998a2398bdc6d4bc9ae8a
 
 build:
   number: 0
   script: {{ PYTHON }} -m pip install . --no-deps -vv
-  skip: true  # [win or py>=37 or py2k]
+  skip: true  # [win]
 
 requirements:
   build:
     - {{ compiler('cxx') }}
     - {{ compiler('c') }}
+    - python                                 # [build_platform != target_platform]
+    - cross-python_{{ target_platform }}     # [build_platform != target_platform]
+    - numpy                                  # [build_platform != target_platform]
   host:
     - python
     - pip
     - pytest-runner
-    - numpy >=1.14.1
+    - numpy
     - onnx >=1.4.1
     - requests
     - six
-    - setuptools
   run:
     - python
-    - tensorflow >=1.5.0
     - onnx >=1.4.1
     - {{ pin_compatible('numpy') }}
     - six
-    - protobuf
     - requests
-    - attrs
+    - python-flatbuffers
+    - tensorflow >=1.5
 
 test:
+  requires:
+    - pip
   commands:
+    - pip check
     - python -m tf2onnx.convert --help
 
 about:
@@ -54,3 +58,4 @@ about:
 extra:
   recipe-maintainers:
     - marcelotrevisani
+    - xhochy
