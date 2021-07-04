@@ -33,9 +33,9 @@ requirements:
     - python
     - onnx >=1.4.1
     - {{ pin_compatible('numpy') }}
-    - six 1.15
+    - six
     - requests
-    - python-flatbuffers
+    - python-flatbuffers 1.12
     - tensorflow >=1.5
 
 test:
