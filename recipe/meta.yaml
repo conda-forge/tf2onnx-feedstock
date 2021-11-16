@@ -37,7 +37,7 @@ requirements:
     - typing-extensions 3.7.4
     - requests
     - python-flatbuffers 1.12
-    - tensorflow >=1.5
+    - tensorflow >=2.6
 
 test:
   requires:
