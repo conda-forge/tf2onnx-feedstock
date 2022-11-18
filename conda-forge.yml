@@ -8,3 +8,5 @@ github:
 bot:
   automerge: true
   inspection: update-grayskull
+conda_build:
+  pkg_format: '2'
