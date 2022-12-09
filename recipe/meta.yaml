@@ -28,12 +28,12 @@ requirements:
     - numpy
     - onnx >=1.4.1
     - requests
-    - six 1.15
+    - six
   run:
     - python
     - onnx >=1.4.1
     - {{ pin_compatible('numpy') }}
-    - six 1.15
+    - six
     - typing-extensions 3.7.4
     - requests
     - python-flatbuffers 1.12
