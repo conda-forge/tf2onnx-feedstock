@@ -1,5 +1,5 @@
 {% set name = "tf2onnx" %}
-{% set version = "1.10.1" %}
+{% set version = "1.11.1" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://github.com/onnx/tensorflow-onnx/archive/v{{ version }}.tar.gz
-  sha256: 60f342b8f5a67482a067b3fa7aa26110a806bba82ddd0cb188189e097de95835
+  sha256: 3b41c22a1bd08f08521aab8b5a8f9351457dcd93b602b9e63fe811aaa9477b69
 
 build:
   number: 0
@@ -35,7 +35,6 @@ requirements:
     - onnx >=1.4.1
     - {{ pin_compatible('numpy') }}
     - six
-    - typing-extensions 3.7.4
     - requests
     - python-flatbuffers 1.12
     - tensorflow >=2.6
