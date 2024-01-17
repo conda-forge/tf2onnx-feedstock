@@ -1,6 +1,7 @@
 bot:
-  automerge: true
-  inspection: update-grayskull
+  # Without an sdist on PyPI update-grayskull doesn't work
+  # automerge: true
+  # inspection: update-grayskull
 build_platform:
   osx_arm64: osx_64
 conda_build:
