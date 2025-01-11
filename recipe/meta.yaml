@@ -10,7 +10,7 @@ source:
   sha256: 34c851e73056a90d2d6b861e67ba26b24a911a4de3c270c8a9e38a6d4bc4ad7a
 
 build:
-  number: 0
+  number: 1
   script:
     # We will manage the build time requirements in conda
     # In 2023/09/17 they had a frivolous constrainst on pytest-runner at build time
@@ -22,10 +22,10 @@ build:
 
 requirements:
   host:
-    - python >=3.8
+    - python {{ python_min }}
     - pip
   run:
-    - python >=3.8
+    - python >={{ python_min }}
     - onnx >=1.4.1
     - numpy >=1.14.1
     - six
@@ -36,6 +36,7 @@ requirements:
 test:
   requires:
     - pip
+    - python {{ python_min }}
   commands:
     - pip check
     - python -m tf2onnx.convert --help
