@@ -9,6 +9,11 @@ source:
   url: https://github.com/onnx/tensorflow-onnx/archive/v{{ version }}.tar.gz
   sha256: 34c851e73056a90d2d6b861e67ba26b24a911a4de3c270c8a9e38a6d4bc4ad7a
   patches:
+    # The last release was in Jan 2024
+    # Numpy 2 has since made the access to np.cast
+    # causing breakages at import time
+    # This patch is backported from July 1, 2025
+    # https://github.com/onnx/tensorflow-onnx/commit/96e6301bafc010719e6d668450465757ce935e9e
     - numpy2_compatibility_cast.patch
 
 build:
