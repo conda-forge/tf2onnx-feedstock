@@ -10,7 +10,7 @@ source:
   sha256: 34c851e73056a90d2d6b861e67ba26b24a911a4de3c270c8a9e38a6d4bc4ad7a
 
 build:
-  number: 1
+  number: 2
   script:
     # We will manage the build time requirements in conda
     # In 2023/09/17 they had a frivolous constrainst on pytest-runner at build time
@@ -24,6 +24,7 @@ requirements:
   host:
     - python {{ python_min }}
     - pip
+    - setuptools
   run:
     - python >={{ python_min }}
     - onnx >=1.4.1
@@ -43,8 +44,7 @@ test:
 
 about:
   home: https://github.com/onnx/tensorflow-onnx
-  license: MIT
-  license_family: MIT
+  license: Apache-2.0
   license_file: LICENSE
   summary: Tensorflow to ONNX converter
   description: tf2onnx - convert TensorFlow models to ONNX models.
