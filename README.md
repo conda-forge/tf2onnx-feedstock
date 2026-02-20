@@ -5,7 +5,7 @@ Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/tf2onnx-feedsto
 
 Home: https://github.com/onnx/tensorflow-onnx
 
-Package license: MIT
+Package license: Apache-2.0
 
 Summary: Tensorflow to ONNX converter
 
