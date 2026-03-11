@@ -1,55 +1,59 @@
-{% set name = "tf2onnx" %}
-{% set version = "1.17.0" %}
+schema_version: 1
+
+context:
+  name: tf2onnx
+  version: "1.17.0"
 
 package:
-  name: {{ name|lower }}
-  version: {{ version }}
+  name: ${{ name|lower }}
+  version: ${{ version }}
 
 source:
-  url: https://github.com/onnx/tensorflow-onnx/archive/v{{ version }}.tar.gz
+  url: https://github.com/onnx/tensorflow-onnx/archive/v${{ version }}.tar.gz
   sha256: 50b4157931b8046c86a1f23820d04b8f64c727b92f8b2bc71d61f10b70f3684f
 
 build:
   number: 0
+  noarch: python
   script:
     # We will manage the build time requirements in conda
     # In 2023/09/17 they had a frivolous constrainst on pytest-runner at build time
     - sed -i "/setup_requires=/d" setup.py
     # We will manage our own constraints for protobuf in conda
     - sed -i "s/'protobuf.*'/'protobuf'/g" setup.py
-    - {{ PYTHON }} -m pip install . --no-deps -vv
-  noarch: python
+    - ${{ PYTHON }} -m pip install . --no-deps -vv
 
 requirements:
   host:
-    - python {{ python_min }}
+    - python ${{ python_min }}.*
     - pip
     - setuptools
+    - sed
   run:
-    - python >={{ python_min }}
-    - onnx >=1.4.1
-    - numpy >=1.14.1
-    - six
+    - python >=${{ python_min }}
+    - onnx >=1.14.0
+    - numpy >=1.23.5
     - requests
     - python-flatbuffers >=1.12
     - tensorflow >=2.6
 
-test:
-  requires:
-    - pip
-    - python {{ python_min }}
-  commands:
-    - pip check
-    - python -m tf2onnx.convert --help
+tests:
+  - requirements:
+      run:
+        - pip
+        - python ${{ python_min }}.*
+    script:
+      - pip check
+      - python -m tf2onnx.convert --help
 
 about:
-  home: https://github.com/onnx/tensorflow-onnx
   license: Apache-2.0
   license_file: LICENSE
   summary: Tensorflow to ONNX converter
   description: tf2onnx - convert TensorFlow models to ONNX models.
-  doc_url: http://simplejson.readthedocs.io/
-  dev_url: https://github.com/onnx/tensorflow-onnx
+  homepage: https://github.com/onnx/tensorflow-onnx
+  repository: https://github.com/onnx/tensorflow-onnx
+  documentation: http://simplejson.readthedocs.io/
 
 extra:
   recipe-maintainers:
