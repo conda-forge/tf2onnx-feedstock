@@ -1,0 +1,61 @@
+schema_version: 1
+
+context:
+  name: tf2onnx
+  version: "1.17.0"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://github.com/onnx/tensorflow-onnx/archive/v${{ version }}.tar.gz
+  sha256: 50b4157931b8046c86a1f23820d04b8f64c727b92f8b2bc71d61f10b70f3684f
+
+build:
+  number: 0
+  noarch: python
+  script:
+    # We will manage the build time requirements in conda
+    # In 2023/09/17 they had a frivolous constrainst on pytest-runner at build time
+    - sed -i "/setup_requires=/d" setup.py
+    # We will manage our own constraints for protobuf in conda
+    - sed -i "s/'protobuf.*'/'protobuf'/g" setup.py
+    - ${{ PYTHON }} -m pip install . --no-deps -vv
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - pip
+    - setuptools
+    - sed
+  run:
+    - python >=${{ python_min }}
+    - onnx >=1.14.0
+    - numpy >=1.23.5
+    - requests
+    - python-flatbuffers >=1.12
+    - tensorflow >=2.6
+
+tests:
+  - requirements:
+      run:
+        - pip
+        - python ${{ python_min }}.*
+    script:
+      - pip check
+      - python -m tf2onnx.convert --help
+
+about:
+  license: Apache-2.0
+  license_file: LICENSE
+  summary: Tensorflow to ONNX converter
+  description: tf2onnx - convert TensorFlow models to ONNX models.
+  homepage: https://github.com/onnx/tensorflow-onnx
+  repository: https://github.com/onnx/tensorflow-onnx
+  documentation: http://simplejson.readthedocs.io/
+
+extra:
+  recipe-maintainers:
+    - marcelotrevisani
+    - xhochy
